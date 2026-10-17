@@ -17,6 +17,10 @@ The application uses React state as the source of truth. The Three.js scene rend
 - Proximity warnings when two equipment centres are less than 0.6 m apart.
 - English and Vietnamese interface labels.
 
+## Architecture document
+
+The concise assessment design document is available as [`docs/cloudworx-architecture.pdf`](docs/cloudworx-architecture.pdf), with the editable Markdown source at [`docs/cloudworx-architecture.md`](docs/cloudworx-architecture.md). It separates implemented prototype behavior from proposed production architecture and unverified performance targets.
+
 ## Requirements
 
 - Node.js version supported by the installed Vite version.
@@ -91,10 +95,10 @@ The following core interactions have been manually checked:
 - Updating the BOM after adding or deleting equipment.
 - Switching between English and Vietnamese.
 
-The production build completed successfully using `npm run build`. The build reported a warning about a JavaScript bundle larger than 500 kB after minification. The bundle size and large-layout frame rate have not been independently optimized or benchmarked.
+A previous development run reported a successful production build with a warning about a JavaScript bundle larger than 500 kB after minification. During the final review in this environment, dependency installation did not complete, so the current source build could not be independently re-verified. Before submission, run `npm ci`, `npm run build`, and `npm run lint` locally and report the actual results. The bundle size and large-layout frame rate have not been independently optimized or benchmarked.
 
 ## AI tool usage
 
-AI coding assistance was used during development to help implement and review parts of the application. The resulting code was reviewed and the core interactions were manually tested. The architecture document distinguishes between functionality present in this prototype and proposed production-system designs.
+AI coding assistance was used during development to help implement and review parts of the application. The resulting code was reviewed and the core interactions were manually tested. The short architecture document distinguishes between functionality present in this prototype and proposed production-system designs. Performance targets are proposals, not measured results.
 
 The project author is responsible for understanding the submitted implementation and explaining its design decisions during the technical review.

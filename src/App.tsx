@@ -34,18 +34,19 @@ function App() {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       const target = event.target as HTMLElement | null
-      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) {
-        return
-      }
+      const isEditingText = Boolean(
+        target &&
+          (target.matches('input, textarea, select') || target.isContentEditable),
+      )
+      if (isEditingText) return
+
       const withMod = event.metaKey || event.ctrlKey
       if (withMod && event.key.toLowerCase() === 'z') {
         event.preventDefault()
         dispatch({ type: event.shiftKey ? 'redo' : 'undo' })
-        return
       }
-      if (event.key === 'Delete' || event.key === 'Backspace') {
-        dispatch({ type: 'delete' })
-      }
+      // Deletion remains an explicit button action so Backspace/Delete used
+      // while navigating other controls cannot unexpectedly remove equipment.
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
